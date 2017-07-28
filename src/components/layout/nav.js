@@ -1,29 +1,28 @@
 import React, { Component } from 'react'
-import { withRouter} from 'react-router-dom'
+import { Link, withRouter} from 'react-router-dom'
+
+import UserDropdown from './user_dropdown'
 
 class Nav extends Component {
   render() {
     return <nav className="navbar navbar-light bg-faded">
       <div className="container">
         <div className="row">
-          <a className="navbar-brand">
+          <Link className="navbar-brand" to="/">
             ALG TRAINER <small> v0.1</small>
-          </a>
+          </Link>
 
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item"><a className="nav-link" href="#/alg_sets">ALGSETS</a></li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/alg_sets">ALGSETS</Link>
+            </li>
           </ul>
 
           <ul className="navbar-nav ml-auto">
             {
               this.props.user.authenticated
-                ? <li className="nav-item">
-                    <a className="nav-link">
-                      <i className="fa fa-user-circle mr-2"></i>
-                      {this.props.user.displayName}
-                    </a>
-                  </li>
-                : <li>Sign up</li>
+                ? <UserDropdown username={this.props.user.displayName} signOut={this.props.signOut}/>
+                : <li><a className="nav-link" onClick={this.props.signIn}>Sign in</a></li>
             }
           </ul>
 

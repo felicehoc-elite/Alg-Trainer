@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 
 class AlgSets extends Component {
   render() {
-    return <h1>AlgSets</h1>
+    return <div className="container">
+      <h1>AlgSets</h1>
+    </div>
   }
 }
 

@@ -11,12 +11,14 @@ import Nav from './layout/nav'
 import Dashboard from './dashboard/'
 import AlgSets from './algsets/'
 
+import * as userActions from '../actions/user'
+
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="app-container">
-          <Nav user={this.props.user}/>
+          <Nav user={this.props.user} signIn={this.props.signIn} signOut={this.props.signOut}/>
 
           <Route exact path="/" component={Dashboard}/>
           <Route exact path="/alg_sets" component={AlgSets}/>
@@ -32,5 +34,16 @@ const mapStateToProps = (state) => {
   }
 }
 
-App = connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => {
+      dispatch(userActions.signOut());
+    },
+    signIn: () => {
+      dispatch(userActions.signIn());
+    }
+  }
+}
+
+App = connect(mapStateToProps, mapDispatchToProps)(App)
 export default App;
