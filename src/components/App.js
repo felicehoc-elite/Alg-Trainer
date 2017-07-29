@@ -10,6 +10,7 @@ import {
 import Nav from './layout/nav'
 import Dashboard from './dashboard/'
 import AlgSets from './algsets/'
+import AlgList from './alglist/'
 
 import * as userActions from '../actions/user'
 
@@ -22,6 +23,7 @@ class App extends Component {
 
           <Route exact path="/" component={Dashboard}/>
           <Route exact path="/alg_sets" component={AlgSets}/>
+          <Route path="/alg_sets/:set" component={AlgList}/>
         </div>
       </Router>
     );
